@@ -72,6 +72,17 @@ function handleMove(r,c,cell){
         return;
     }
 
+    if (isBoardFull()) {
+        gameOver = true;
+        // to pause the DOM so that last bubble get filled before alert
+        setTimeout(
+            () => {
+                alert("Game ended as a Draw between Player - 1 & Player - 2");
+            },100
+        );
+        return;
+    }
+
     //Change turn
     player = player === "red" ? "green" : "red";
     turn.textContent = player === "red" ? "Player - 1" : "Player - 2";// player status info
@@ -84,6 +95,15 @@ function checkWinner(r,c){
         consecutiveDot(r,c,1,0) >= winCount || //check vertically
         consecutiveDot(r,c,0,1) >= winCount //check horizontally
     )
+}
+
+function isBoardFull() {
+    for (let row = 0; row < boardBreadth; row++) {
+        for (let col = 0; col < boardLength; col++) {
+            if (boardArray[row][col] === '') return false;
+        }
+    }
+    return true;
 }
 
 
