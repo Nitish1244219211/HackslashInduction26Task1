@@ -147,6 +147,7 @@ let reset = document.querySelector("#resetBtn");
 reset.addEventListener("click",
     () => {
         player = "red";
+        turn.textContent="Player - 1"
         gameOver = false;
         createBoard(boardLength,boardBreadth);
     }
